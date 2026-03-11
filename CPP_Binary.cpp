@@ -1,9 +1,10 @@
 #include <iostream>
 
 void printBinary(unsigned int n) {
-    int mask = 1 << 8;
+    unsigned int mask = 1u << (sizeof(unsigned int) * 8u - 1);
+	std::cout << "sizeof(int) is " << sizeof(unsigned int) << " bytes" << std::endl;
     std::cout << "Number as Binary is ";
-    while (mask > 0) {
+    while (mask != 0) {
         bool result = n & mask;
         std::cout << result;
         mask = mask >> 1;
@@ -62,7 +63,9 @@ int countSetBits(int n) {
     return counter;
 }
 
-bool isPowerOfTwo(int n);
+bool isPowerOfTwo(int n){
+    return (n > 0 && ((n & (n - 1)) == 0));
+}
 
 void swap(int& a, int& b) {
     a ^= b;
@@ -234,19 +237,19 @@ void executeChoice(int& choice) {
           break;
     case 4: {
         std::cout << std::endl;
-        std::cout << "Please enter a number: " << std::endl;
+        std::cout << "Please enter a number: ";
         std::cin >> number;
-        std::cout << "Please enter a bit number: " << std::endl;
+        std::cout << "Please enter a bit number: ";
         std::cin >> bitNumber;
         std::cout << "the i-th bit is " << setBit(number, bitNumber) << std::endl;
         std::cout << std::endl;
     }
           break;
     case 5: {
-        std::cout << std::endl;
-        std::cout << "Please enter a number: " << std::endl;
+        std::cout ;
+        std::cout << "Please enter a number: ";
         std::cin >> number;
-        std::cout << "Please enter a bit number: " << std::endl;
+        std::cout << "Please enter a bit number: ";
         std::cin >> bitNumber;
         std::cout << "Before change:" << std::endl;
         printBinary(number);
@@ -258,9 +261,9 @@ void executeChoice(int& choice) {
           break;
     case 6: {
         std::cout << std::endl;
-        std::cout << "Please enter a number: " << std::endl;
+        std::cout << "Please enter a number: " ;
         std::cin >> number;
-        std::cout << "Please enter a bit number: " << std::endl;
+        std::cout << "Please enter a bit number: " ;
         std::cin >> bitNumber;
         std::cout << "the i-th bit was changed to " << toggleBit(number, bitNumber) << std::endl;
         std::cout << std::endl;
@@ -268,21 +271,33 @@ void executeChoice(int& choice) {
           break;
     case 7: {
         std::cout << std::endl;
-        std::cout << "Please enter a number: " << std::endl;
+        std::cout << "Please enter a number: " ;
         std::cin >> number;
         std::cout << "Set bits are " << countSetBits(number) << std::endl;
         std::cout << std::endl;
     }
           break;
     case 8: {
-        std::cout << "not implemented" << std::endl;
+        std::cout << std::endl;
+        std::cout << "Please enter a number: ";
+        std::cin >> number;
+
+        bool result = isPowerOfTwo(number);
+
+        if (result) {
+            std::cout << "Number is power of 2" << std::endl;
+        }
+        else {
+            std::cout << "Number is NOT power of 2" << std::endl;
+        }
+        std::cout << std::endl;
     }
           break;
     case 9: {
         std::cout << std::endl;
-        std::cout << "Please enter first number: " << std::endl;
+        std::cout << "Please enter first number: " ;
         std::cin >> number;
-        std::cout << "Please enter second number: " << std::endl;
+        std::cout << "Please enter second number: " ;
         std::cin >> bitNumber;
         std::cout << "Number after the swap:" << std::endl;
         swap(number, bitNumber);
@@ -295,9 +310,9 @@ void executeChoice(int& choice) {
           break;
     case 10: {
         std::cout << std::endl;
-        std::cout << "Please enter first number: " << std::endl;
+        std::cout << "Please enter first number: " ;
         std::cin >> number;
-        std::cout << "Please enter second number: " << std::endl;
+        std::cout << "Please enter second number: " ;
         std::cin >> bitNumber;
         if (oppositeSigns(number, bitNumber)) {
             std::cout << "Signs are same" << std::endl;
@@ -311,7 +326,7 @@ void executeChoice(int& choice) {
            break;
     case 11: {
         std::cout << std::endl;
-        std::cout << "Please enter а number: " << std::endl;
+        std::cout << "Please enter а number: " ;
         std::cin >> uNumber;
         std::cout << "Before the change: " << std::endl;
         printBinary(uNumber);
@@ -333,9 +348,9 @@ void executeChoice(int& choice) {
            break;
     case 13: {
         std::cout << std::endl;
-        std::cout << "Please enter first number: " << std::endl;
+        std::cout << "Please enter first number: " ;
         std::cin >> number;
-        std::cout << "Please enter second number: " << std::endl;
+        std::cout << "Please enter second number: " ;
         std::cin >> bitNumber;
 
         int result = multiply(number, bitNumber);
@@ -347,9 +362,9 @@ void executeChoice(int& choice) {
            break;
     case 14: {
         std::cout << std::endl;
-        std::cout << "Please enter first number: " << std::endl;
+        std::cout << "Please enter first number: " ;
         std::cin >> number;
-        std::cout << "Please enter second number: " << std::endl;
+        std::cout << "Please enter second number: " ;
         std::cin >> bitNumber;
 
         int result = divide(number, bitNumber);
