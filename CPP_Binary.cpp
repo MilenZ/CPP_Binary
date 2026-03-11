@@ -2,11 +2,11 @@
 
 void printBinary(unsigned int n) {
     unsigned int mask = 1u << (sizeof(unsigned int) * 8u - 1);
-	std::cout << "sizeof(int) is " << sizeof(unsigned int) << " bytes" << std::endl;
+
     std::cout << "Number as Binary is ";
     while (mask != 0) {
-        bool result = n & mask;
-        std::cout << result;
+        //bool result = n & mask;
+        std::cout << ((n & mask) != 0);
         mask = mask >> 1;
     }
     std::cout << std::endl;
